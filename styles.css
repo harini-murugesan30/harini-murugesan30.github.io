@@ -101,3 +101,94 @@ body{
   .left{flex:0 0 auto}
   .timeline-left{flex:0 0 150px}
 }
+
+/* ==== Animations ==== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(31,41,55,0.1);
+}
+
+/* ==== Modal ==== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding: 40px 20px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.5);
+}
+.modal-content {
+  background: var(--card);
+  margin: auto;
+  padding: 20px;
+  border-radius: var(--radius);
+  max-width: 700px;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 1.4rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.modal-close:hover {
+  color: var(--accent);
+}
+
+/* ==== Counters ==== */
+.counter {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ==== Scroll progress bar ==== */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: var(--accent);
+  z-index: 9999;
+  width: 0%;
+}
+
+/* ==== Light/Dark mode ==== */
+body.dark-mode {
+  --bg: #1e1e1e;
+  --card: #2c2c2c;
+  --muted: #bbb;
+  --text: #f1f1f1;
+  --accent: #66d9d9;
+  --accent-2: #2c3e3e;
+}
+.mode-toggle {
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--accent-2);
+  color: var(--accent);
+  font-weight: 600;
+  margin-left: 12px;
+}
