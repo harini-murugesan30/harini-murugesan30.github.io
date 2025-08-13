@@ -1,11 +1,9 @@
-// script.js
-// Small interactive bits: email obfuscation, current year, smooth scroll
 document.addEventListener('DOMContentLoaded', function () {
-  // 1) Set year in footer
+  // Set footer year
   const yearSpan = document.getElementById('year');
   if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-  // 2) Smooth scroll for nav links
+  // Smooth scroll for nav links
   document.querySelectorAll('.nav-links a').forEach(a=>{
     a.addEventListener('click', function(e){
       e.preventDefault();
@@ -15,34 +13,100 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // 3) Email obfuscation - modify parts below to your real email username & domain
-  // For privacy, we store parts and assemble only on user action (helps reduce scraping).
-  const user = 'harini.mk30'; // <-- replace username (no @)
-  const domain = 'gmail.com';    // <-- replace domain
+  // Email obfuscation
+  const user = 'harinimurugesan'; // Replace username
+  const domain = 'example.com';    // Replace domain
   const revealBtn = document.getElementById('reveal-email');
   const emailMask = document.getElementById('email-mask');
-
   function showEmailAndCopy() {
     const email = user + '@' + domain;
-    // Update UI
     emailMask.textContent = email;
-    // copy to clipboard
     navigator.clipboard && navigator.clipboard.writeText(email).then(()=> {
       revealBtn.textContent = 'Copied ✓';
       setTimeout(()=> revealBtn.textContent = 'Reveal & copy', 1800);
-    }).catch(()=> {
-      revealBtn.textContent = 'Reveal';
     });
-    // open mail client
     window.location.href = 'mailto:' + email;
   }
-
   if (revealBtn) {
     revealBtn.addEventListener('click', showEmailAndCopy);
+    revealBtn.addEventListener('keydown', e => { if(e.key === 'Enter') showEmailAndCopy(); });
   }
 
-  // accessibility: allow Enter key on reveal button
-  if (revealBtn) {
-    revealBtn.addEventListener('keydown', function(e){ if(e.key === 'Enter') showEmailAndCopy(); });
-  }
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.15});
+  fadeEls.forEach(el=>observer.observe(el));
+
+  // Scroll progress bar
+  const progressBar = document.createElement('div');
+  progressBar.id = 'progress-bar';
+  document.body.appendChild(progressBar);
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.scrollY;
+    let docHeight = document.body.scrollHeight - window.innerHeight;
+    let progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = progress + '%';
+  });
+
+  // Light/Dark mode toggle
+  const modeBtn = document.createElement('div');
+  modeBtn.className = 'mode-toggle';
+  modeBtn.textContent = 'Dark Mode';
+  document.querySelector('.nav').appendChild(modeBtn);
+  modeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    modeBtn.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+  });
+
+  // Animated counters
+  const counters = document.querySelectorAll('.counter');
+  const counterObserver = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = +counter.dataset.target;
+        let count = 0;
+        const increment = target / 60; // ~1s animation
+        const updateCounter = () => {
+          count += increment;
+          if (count < target) {
+            counter.textContent = Math.ceil(count);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        updateCounter();
+        counterObserver.unobserve(counter);
+      }
+    });
+  }, {threshold: 0.5});
+  counters.forEach(c=>counterObserver.observe(c));
+
+  // Modal pop-ups for project details
+  const modals = document.querySelectorAll('.modal');
+  const closeBtns = document.querySelectorAll('.modal-close');
+  document.querySelectorAll('.view-details').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      e.preventDefault();
+      const modalId = btn.dataset.modal;
+      document.getElementById(modalId).style.display = 'block';
+    });
+  });
+  closeBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      btn.closest('.modal').style.display = 'none';
+    });
+  });
+  window.addEventListener('click', e=>{
+    if (e.target.classList.contains('modal')) {
+      e.target.style.display = 'none';
+    }
+  });
 });
