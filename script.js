@@ -54,16 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
     progressBar.style.width = progress + '%';
   });
 
-  // Light/Dark mode toggle
-  const modeBtn = document.createElement('div');
-  modeBtn.className = 'mode-toggle';
-  modeBtn.textContent = 'Dark Mode';
-  document.querySelector('.nav').appendChild(modeBtn);
-  modeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    modeBtn.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
-  });
-
   // Animated counters
   const counters = document.querySelectorAll('.counter');
   const counterObserver = new IntersectionObserver(entries=>{
