@@ -215,7 +215,7 @@ body.dark-mode {
 }
 
 .modal-list li::before {
-  content: "✔️";
+  content: "🔹";
   position: absolute;
   left: 8px;
   top: 50%;
@@ -242,14 +242,14 @@ body.dark-mode {
 }
 
 .modal-list li:nth-child(1) { animation-delay: 0.1s; }
-.modal-list li:nth-child(2) { animation-delay: 0.2s; }
-.modal-list li:nth-child(3) { animation-delay: 0.3s; }
-.modal-list li:nth-child(4) { animation-delay: 0.4s; }
-.modal-list li:nth-child(5) { animation-delay: 0.5s; }
-.modal-list li:nth-child(6) { animation-delay: 0.6s; }
-.modal-list li:nth-child(7) { animation-delay: 0.7s; }
-.modal-list li:nth-child(8) { animation-delay: 0.8s; }
-.modal-list li:nth-child(9) { animation-delay: 0.9s; }
+.modal-list li:nth-child(2) { animation-delay: 0.3s; }
+.modal-list li:nth-child(3) { animation-delay: 0.5s; }
+.modal-list li:nth-child(4) { animation-delay: 0.7s; }
+.modal-list li:nth-child(5) { animation-delay: 0.9s; }
+.modal-list li:nth-child(6) { animation-delay: 0.11s; }
+.modal-list li:nth-child(7) { animation-delay: 0.13s; }
+.modal-list li:nth-child(8) { animation-delay: 0.15s; }
+.modal-list li:nth-child(9) { animation-delay: 0.17s; }
 
 @keyframes fadeInUp {
   from {
