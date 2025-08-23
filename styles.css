@@ -194,3 +194,42 @@ body.dark-mode {
   font-weight: 600;
   margin-left: 12px;
 }
+.modal-list {
+  list-style: none;
+  margin: 15px 0;
+  padding-left: 0;
+}
+
+.modal-list li {
+  position: relative;
+  margin-bottom: 12px;
+  padding-left: 28px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+  background: #f9f9f9;
+  border-left: 3px solid #4fb0ae;
+  padding: 10px 12px 10px 32px;
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-list li::before {
+  content: "✔️";
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+}
+
+.modal-list li:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+.highlight {
+  color: #4fb0ae;
+  font-weight: 700;
+}
