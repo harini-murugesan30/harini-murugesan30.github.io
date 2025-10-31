@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Email obfuscation
-  const user = 'harinimurugesan'; // Replace username
-  const domain = 'example.com';    // Replace domain
+  const user = 'harini.murugesan30'; 
+  const domain = 'gmail.com';    
   const revealBtn = document.getElementById('reveal-email');
   const emailMask = document.getElementById('email-mask');
   function showEmailAndCopy() {
